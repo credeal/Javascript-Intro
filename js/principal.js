@@ -12,11 +12,11 @@ function ValidarTabela(){
         var altura = pacientes[i].querySelector(".info-altura").textContent;
         var imc = pacientes[i].querySelector(".info-imc");
 
-        if(peso < 0 || peso > 1000){
+        if(ValidaPeso(peso)){
             pacientes[i].classList.add("cor-de-erro");
             imc.textContent = "Peso Inválido.";
         }
-        else if(altura < 0 || altura > 3.00){
+        else if(ValidaAltura(altura)){
             pacientes[i].classList.add("cor-de-erro"); //Boa pratica é adicionar uma classe para mudar o visual
             imc.textContent = "Altura Invalída.";
         }
@@ -25,6 +25,19 @@ function ValidarTabela(){
     }
 }
 
+function ValidaPeso(peso){
+    if(peso < 0 || peso > 1000)
+        return true;
+    
+    return false;
+}
+
+function ValidaAltura(altura){
+    if(altura < 0 || altura > 3.00)
+        return true;
+    
+    return false;
+}
 
 function CalculaImc(p_peso,p_altura){
     return (p_peso / (p_altura * p_altura)).toFixed(2);

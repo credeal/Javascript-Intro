@@ -136,3 +136,16 @@ button[disabled=disabled], button:disabled {
 .cor-de-erro{
 	background-color: #f94852;
 }
+
+.mensagemDeErro{
+	background-color: #f94852;
+	height: 100%;
+	text-align: inherit;
+	color: white;
+	font-weight: bold;
+	padding-left: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+	
+}

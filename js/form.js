@@ -23,14 +23,38 @@ btnAdicionar.addEventListener("click", function(event){
     //Cria a (TR) a (TD) do paciente
     var pacienteTr =  montaTr(paciente);
 
+    var erro = ValidarPaciente(paciente);
+    //Validando Formulário
+    if(erro.length != 0){
+        ErroMensagem(erro);
+        return
+    }
+
+    let msgErro = document.querySelector("#msgErro");
+    msgErro.innerHTML = "";
+    msgErro.classList.remove("mensagemDeErro");
+
     //Pegando a tabela MÃE
     let tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
     //Desenvolvido por mim: LimparCampos(form);
     form.reset();
-    ValidarTabela();
+    
 });
+
+function ErroMensagem(mensagem){
+    let ul = document.querySelector("#msgErro");
+    ul.innerHTML = "";
+
+    mensagem.forEach(function(elemento) {
+        let li = document.createElement("li");
+        li.textContent = elemento;
+        ul.appendChild(li);
+    });
+
+    ul.classList.add("mensagemDeErro");
+}
 
 function montaTd(dado,classeNome){
     let td = document.createElement("td");
@@ -65,9 +89,33 @@ function obtemInformacaoPaciente(form){
     return paciente;    
 }
 
-function LimparCampos(form){
-    form.nome.value = "";
-    form.peso.value = "";
-    form.altura.value = "";
-    form.gordura.value = "";
+function ValidarPaciente(paciente){
+
+    var erros = [];
+
+    if(paciente.nome.length == 0){
+        erros.push(" * campo nome está em branco ");
+    }
+
+    if(paciente.gordura.length == 0)
+        erros.push(" * campo gordura está em branco ");
+    
+    if(paciente.peso.length == 0){
+        erros.push(" * campo peso está em branco ");
+    }
+    else{
+        if(ValidaPeso(paciente.peso))
+            erros.push("* Peso Invalído ");
+    }
+
+    if(paciente.altura.length == 0){
+        erros.push(" * campo Altura está em branco ");
+    }
+    else{
+        if(ValidaAltura(paciente.altura))
+        erros.push(" * Altura Invalída ");
+    }
+
+    return erros;
+    
 }
