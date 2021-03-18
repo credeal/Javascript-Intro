@@ -55,7 +55,7 @@ table{
 	width: 100%;
 	margin-bottom : .5em;
     table-layout: fixed;
-
+	margin-top: .5em;
 }
 
 td, th {
@@ -157,4 +157,8 @@ button[disabled=disabled], button:disabled {
 .fadeOut{
 	opacity: 0;
 	transition: 0.5s;
+}
+
+.invisivel{
+	display: none;
 }
