@@ -20,9 +20,6 @@ btnAdicionar.addEventListener("click", function(event){
     //Obtem as informações do Formulario para add um paciente
     let paciente = obtemInformacaoPaciente(form);
 
-    //Cria a (TR) a (TD) do paciente
-    var pacienteTr =  montaTr(paciente);
-
     var erro = ValidarPaciente(paciente);
     //Validando Formulário
     if(erro.length != 0){
@@ -34,9 +31,7 @@ btnAdicionar.addEventListener("click", function(event){
     msgErro.innerHTML = "";
     msgErro.classList.remove("mensagemDeErro");
 
-    //Pegando a tabela MÃE
-    let tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr);
+    AdicionaPacienteNaTabela(paciente);
 
     //Desenvolvido por mim: LimparCampos(form);
     form.reset();
@@ -54,6 +49,14 @@ function ErroMensagem(mensagem){
     });
 
     ul.classList.add("mensagemDeErro");
+}
+
+function AdicionaPacienteNaTabela(paciente){
+    //Cria a (TR) a (TD) do paciente
+    var pacienteTr =  montaTr(paciente);
+      //Pegando a tabela MÃE
+    let tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
 }
 
 function montaTd(dado,classeNome){
